@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:jaxws="http://cxf.apache.org/jaxws"
+    xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+    xsi:schemaLocation="
+http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://cxf.apache.org/jaxrs
+http://cxf.apache.org/schemas/jaxrs.xsd
+http://cxf.apache.org/jaxws
+http://cxf.apache.org/schemas/jaxws.xsd">
+
+<import resource="classpath:META-INF/cxf/cxf.xml" />
+<import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
+<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
+
+
+	<!-- <jaxws:endpoint 
+	id="bookShelfService" 
+	implementor="com.santhosh.service.BooksShelfServiceImpl"
+	address="/bookshelfservice">
+	</jaxws:endpoint> -->
+	
+	<bean id="movieManager" class="com.santhosh.impl.MovieManager"></bean>
+	
+	<bean id="movieService" class="com.santhosh.service.MovieService">
+		<property name="movieManager" ref="movieManager"></property>
+	</bean>
+	
+	<bean id="jsonProvider" class="org.codehaus.jackson.jaxrs.JacksonJsonProvider"></bean>
+	
+	<jaxrs:server id="movieerviceRest" address="/rest/MovieService">
+	
+		<jaxrs:serviceBeans>
+			<ref bean="MovieService"/>
+		</jaxrs:serviceBeans>
+		<jaxrs:providers>
+			<ref bean='jsonProvider' />
+		</jaxrs:providers>
+	
+	
+	</jaxrs:server>
+	
+	
+</beans>
