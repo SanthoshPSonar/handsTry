@@ -4,8 +4,8 @@ import java.io.Serializable;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name="Movie")
-public class MovieTO implements Serializable{
+
+public class MovieTO {
 
 	/**
 	 * @author Santhosh P Sonar

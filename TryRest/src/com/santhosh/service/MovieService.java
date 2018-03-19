@@ -19,21 +19,28 @@ import com.santhosh.impl.MovieManager;
 import com.santhosh.model.MovieRequest;
 import com.santhosh.model.MovieResponse;
 
-
-
-
+@Path("/")
+@Produces({"application/xml","application/json"})
+@Consumes({"application/xml","application/json"})
 public class MovieService {
 
 	
 	private MovieManager movieManager;
 	
-	public MovieManager getMovieManger() {
+	/**
+	 * @return the movieManager
+	 */
+	public MovieManager getMovieManager() {
 		return movieManager;
 	}
+
+	/**
+	 * @param movieManager the movieManager to set
+	 */
 	public void setMovieManager(MovieManager movieManager) {
-		this.movieManager=movieManager;
+		this.movieManager = movieManager;
 	}
-	
+
 	@GET
 	@Path("/getMovie/{ID}")
 	@Produces({"application/xml","application/json"})
