@@ -19,7 +19,7 @@ import com.santhosh.impl.MovieManager;
 import com.santhosh.model.MovieRequest;
 import com.santhosh.model.MovieResponse;
 
-@Path("/")
+
 @Produces({"application/xml","application/json"})
 @Consumes({"application/xml","application/json"})
 public class MovieService {
@@ -61,13 +61,14 @@ public class MovieService {
 	}
 	
 	@POST
-	@Path("/addbook")
+	@Path("/addMovie")
 	@Produces({"application/xml","application/json"})
 	@Consumes({"application/xml","application/json","application/x-www-form-urlencoded"})
-	//public Response addBook(@FormParam("MovieName") String movieName ,@FormParam("Director") String director ) {
+	//public Response addBook(@PathParam("MovieName") String movieName ,@PathParam("Director") String director ) {
 	  public Response addBook(MovieRequest movieRequest ) {
 		
 		MovieResponse movieResponse = new MovieResponse();
+		
 		
 		movieManager.insertMovie(movieRequest.getMovieTO());
 
